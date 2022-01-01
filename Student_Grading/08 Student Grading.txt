@@ -1,0 +1,27 @@
+Student Grading
+
+The program will load data about students and their grades from a file.
+It can be txt file that looks for example like this:
+
+Johny Smith; 4; 4; 1; 3; 5; 2
+Lucy Jenkins; 1; 2; 3; 1; 1; 1
+Peter Johnson; 1; 1; 1; 1; 2; 1
+
+The user can then choose to:
+1. view the whole grading (every student and their grades)
+2. enter student name and only grades for that student are shown
+3. find the best / worst student (based on grade average)
+4. enter a grade, and names of students who have better average are shown
+5. calculate average for the whole class across all tests
+6. calculate average for the whole class for a given test
+	
+
+
+
+BONUS:
+1. Allow adding new tests / grading. If the uses decides to add new test, the program will display names
+	of students and the user enters grades for each person for this new test. Afterwards, the new data is
+	stored (overwrite the original file so that it has the added grades)
+2. Allow multiple classes - so for example have one file with grades for Maths, one file with grades for
+	Biology, one file for Chemistry etc... the user can choose which subject they want to "load"
+3. Give user option to sort students based on their grades
