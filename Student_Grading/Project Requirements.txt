@@ -1,0 +1,23 @@
+Exam project requirements
+Exam project should comply with the following requirements:
+
+the application should have a graphic user interface (using WinForms, WPF or similar)
+all the .NET naming conventions should be followed
+all the classes, variables, properties etc. should be named with a comprehensible and descriptive name
+source code should be formated in a well arranged way
+code shouldn't contain long methods
+project doesn't contain any "dead code"
+each method serves only one purpose
+code is well and purposely commented
+code doesn't contain old comments
+code doesn't contain needless comments
+data and methods working with this data are part of one class
+all non-constant data fields are declared as private (and made accessible using a method or by encapsulation as a property)
+inheritance represents the "IS-A" relationship
+code is meaningfully covered by unit tests
+all unit tests pass
+application is divided into layers (presentation layer is separated from the application logic layer)
+code doesn't contain anti-patterns or smells of code:
+code doesn't contain "magic constants"
+code doesn't contain "god objects"
+code doesn't contain any "error hiding" anti-pattern
