@@ -21,10 +21,19 @@ namespace Student_Grading
         }
 
         public string SelectedSubject;
+        
+        //meselen burada demisdim constructor yarada bilersiz
+/*
+
+public Grades(string subject){
+   Grades(); //defaulc constructoru ya cagiririq
+    this.SelectedSubject = subject; ///bu cur
+}
+*/
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
-            Main frm = new Main();
+            Main frm = new Main();//frm variablein adi oxunaqli olsun
             frm.Show();
             this.Hide();
         }
@@ -49,7 +58,8 @@ namespace Student_Grading
             colcount = dt.Columns.Count - 1;
 
             /* Define list of Test columns to use later */
-            cols = dt.Columns[1].ColumnName;
+            cols = dt.Columns[1].ColumnName;// exception ola biler. belke dt.Columns[] olcusu 2 den balacadi, onda dt.Columns[1] exception qaytaracaq.  olcusunu yoxlayin
+            //evvelceden 
             for (int i = 2; i < dt.Columns.Count; i++)
             {
                 cols = cols + "," + dt.Columns[i].ColumnName;
@@ -59,6 +69,8 @@ namespace Student_Grading
                Normal Test1+Test2 doesn't work in query, so we need to make it include NULL values
                IIf(IsNull([Test1]), 0, [Test1]) + IIf(IsNull([Test2]), 0, [Test2]) + ....... */
             colsplus = "IIf(IsNull([" + dt.Columns[1].ColumnName + "]), 0, [" + dt.Columns[1].ColumnName + "])";
+            
+            //COX qeliz yazilib bu hisseler, basa duse bilmedim ,burada ne etmek istemisiniz
             for (int i = 2; i < dt.Columns.Count; i++)
             {
                 colsplus = colsplus + "+ IIf(IsNull([" + dt.Columns[i].ColumnName + "]), 0, [" + dt.Columns[i].ColumnName + "])";
@@ -92,7 +104,9 @@ namespace Student_Grading
 
             /* This is to generate final datatable from the initial loaded data and Average column */
             DataTable dt1 = new DataTable();
-            OleDbDataAdapter da1 = new OleDbDataAdapter("SELECT *, Format(( "+colsplus+" )/( "+colsdiv+ " ),'Fixed') as Average FROM " + SelectedSubject, GradesDbConnect);
+            OleDbDataAdapter da1 = new OleDbDataAdapter("SELECT *, Format(( "+colsplus+" )/( "+colsdiv+ " ),'Fixed') as Average FROM " + SelectedSubject, GradesDbConnect);//bu cur yazmaq olmaz, c# da query de where varsa, ve ora parameteler oturulurse, bu cur yazmirlar, sehv etmiremse, @ (231ci setirde o cur yazmisiz) isaresiynen yazilmalidi
+            
+            
 
             da1.Fill(dt1);
             DataGridView1.DataSource = dt1;
@@ -105,6 +119,9 @@ namespace Student_Grading
             DataTable dt = new DataTable();
             GradesDbConnect.Open();
             OleDbDataAdapter da = new OleDbDataAdapter("Select format( (" + avgcols + ")/" + colcount + " , 'Fixed') from " + SelectedSubject, GradesDbConnect);
+            //calisin queryni hemise ayrica bir deyisende yazin, sonra metoda oturun.meselen
+//string sql = "Select format( (" + avgcols + ")/" + colcount + " , 'Fixed') from " + SelectedSubject;
+// OleDbDataAdapter da = new OleDbDataAdapter(sql, GradesDbConnect);
             da.SelectCommand.CommandType = CommandType.Text;
             da.Fill(dt);
             GradesDbConnect.Close();
@@ -118,7 +135,7 @@ namespace Student_Grading
             {
             DataTable dt = new DataTable();
             GradesDbConnect.Open();
-            OleDbDataAdapter da = new OleDbDataAdapter("Select format(Avg(" + CmbTestAverage.Text + "), 'Fixed') from " + SelectedSubject, GradesDbConnect);
+            OleDbDataAdapter da = new OleDbDataAdapter("Select format(Avg(" + CmbTestAverage.Text + "), 'Fixed') from " + SelectedSubject, GradesDbConnect);//121 ci setir
             da.SelectCommand.CommandType = CommandType.Text;
             da.Fill(dt);
             GradesDbConnect.Close();
@@ -225,7 +242,7 @@ namespace Student_Grading
         {
             GradesDbConnect.Open();
             OleDbCommand MyScript = new OleDbCommand("Delete From " + SelectedSubject + " Where Student=@p1", GradesDbConnect);
-            MyScript.Parameters.AddWithValue("@p1", TxtStudentAdd.Text);
+            MyScript.Parameters.AddWithValue("@p1", TxtStudentAdd.Text);//bu metodu eger cagirirsinizsa, yaxsi olar ki, parameter kimi metodda gonderesiniz
             MyScript.ExecuteNonQuery();
             GradesDbConnect.Close();
             Listdata();
@@ -244,7 +261,7 @@ namespace Student_Grading
         }
 
         /* To show results which average grade is higher that selected  */
-        void AboveAverage()
+        void AboveAverage()//metodun adi Fel (Verb) olmalidi
         {
             (DataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("Average > '{0}'", TxtAboveAverage.Text);
         }
