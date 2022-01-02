@@ -22,7 +22,7 @@ namespace Student_Grading
 
         private void BtnMathematics_Click(object sender, EventArgs e)
         {
-            Grades frm = new Grades();
+            Grades frm = new Grades(); //frm yox form yazsaz daha yaxsi olar, ya da gradesForm
             frm.SelectedSubject = "Mathematics";
             frm.Show();
             this.Hide();
@@ -30,7 +30,7 @@ namespace Student_Grading
 
         private void BtnInformatics_Click(object sender, EventArgs e)
         {
-            Grades frm = new Grades();
+            Grades frm = new Grades(); //25ci setirdeki kimi
             frm.SelectedSubject = "Informatics";
             frm.Show();
             this.Hide();
@@ -62,12 +62,21 @@ namespace Student_Grading
 
         private void BtnLiterature_Click(object sender, EventArgs e)
         {
-            Grades frm = new Grades();
+            Grades frm = new Grades(); //fikir verirsinizse, bu 2 setir, 65,66,67 tekrar tekrar istifade olunur, kicik private metod yazib, duplicationdan qacmaq olar
+//men 71ci setirde yazdim
             frm.SelectedSubject = "Literature";
             frm.Show();
             this.Hide();
+//ikinci variant ise Grades classinda yeni constructor teyin edirsiz,parameter kimi subject gotursun ve o constructorun icinde SelectedSubject=subject; olsun
+//meselen yaziram. Grades form = new Grades("Literature"); //Grades classinda edecem deyisiklik
         }
-
+/*
+//private Form (tipi->Gradesin tipini bilmediyimden) createGradeForm(String subject) {
+Grades form = new Greades();
+form.SelectedSubject = subject;
+return form;
+}
+*/
         private void BtnAbout_Click(object sender, EventArgs e)
         {
             About frm = new About();
